@@ -1,0 +1,36 @@
+{
+  "name": "fuseapp",
+  "packageManager": "yarn@3.3.1",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --build && vite build",
+    "start": "vite",
+    "fmt": "prettier --write src/",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src"
+  },
+  "engines": {
+    "node": "=19.2.0"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "@vitejs/plugin-react": "^3.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "latest",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "latest",
+    "prettier": "^2.8.1",
+    "typescript": "*",
+    "vite": "^4.0.3"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
