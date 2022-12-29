@@ -16,7 +16,10 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "paths": {
+      "~/components/*": ["./src/components/*"],
       "~/contexts/*": ["./src/contexts/*"],
+      "~/esm/*": ["./src/esm/*"],
+      "~/hooks/*": ["./src/hooks/*"],
       "~/views/*": ["./src/views/*"]
     }
   },

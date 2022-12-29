@@ -17,6 +17,8 @@
     "@types/eslint": "^8",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/styled-components": "^5",
+    "@types/styled-system": "^5",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "@vitejs/plugin-react": "^3.0.0",
@@ -37,6 +39,8 @@
     "nostr-tools": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.6.1"
+    "react-router-dom": "^6.6.1",
+    "styled-components": "^5.3.6",
+    "styled-system": "^5.1.5"
   }
 }
