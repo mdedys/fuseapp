@@ -19,6 +19,7 @@ class CredentialStore {
 
   // Stored in local storage
   private creds: Credentials = { pubkey: "", privkey: "" };
+  private relay = "";
   private encrypted = "";
   private cipher = "";
   private salt = "";
@@ -31,8 +32,16 @@ class CredentialStore {
     this.encrypted = data.data;
   }
 
-  get() {
+  accountExists() {
+    return this.encrypted.length > 0;
+  }
+
+  getCreds() {
     return this.creds;
+  }
+
+  getRelay() {
+    return this.relay;
   }
 
   unlock(password: string): Credentials {
@@ -47,14 +56,15 @@ class CredentialStore {
     }
   }
 
-  save(password: string, pubkey: string, privkey: string) {
+  save(password: string, relay: string, pubkey: string, privkey: string) {
     const salt = encryption.generateSalt();
     const cipher = encryption.createCipher(password, salt);
     this.salt = salt;
     this.cipher = cipher;
     this.creds = { pubkey, privkey };
+    this.relay = relay;
     this.encrypted = encryption.encrypt(this.creds, password, salt);
-    this.storage.set(KEY, { data: this.encrypted, cipher: this.cipher, salt: this.salt });
+    this.storage.set(KEY, { data: this.encrypted, cipher: this.cipher, salt: this.salt, relay: this.relay });
   }
 }
 

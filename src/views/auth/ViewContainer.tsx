@@ -6,7 +6,7 @@ import Flex from "~/components/flex/Flex.js";
 export default function ViewContainer(props: PropsWithChildren) {
   return (
     <Row justify="center" style={{ height: "100%" }}>
-      <Col span={8}>
+      <Col xs={20} sm={8}>
         <Flex
           alignItems="center"
           justifyContent="center"

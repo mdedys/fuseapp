@@ -1,14 +1,14 @@
-import { generatePrivateKey, getPublicKey } from "nostr-tools";
 import { useState, useContext, createContext, PropsWithChildren } from "react";
 
-import CredentialStore, { Credentials } from "../credentials/CredentialStore.js";
+import CredentialStore, { Credentials } from "~/stores/credentials/CredentialStore.js";
 
 type AuthContext = {
+  accountExists: boolean;
   creds: Credentials | null;
   isAuthenticated: boolean;
   api: {
     unlock(password: string): void;
-    create(password: string): void;
+    save(password: string, relay: string, redentials: Credentials): void;
   };
 };
 
@@ -17,11 +17,12 @@ const NOT_SETUP = () => {
 };
 
 const Context = createContext<AuthContext>({
+  accountExists: false,
   creds: null,
   isAuthenticated: false,
   api: {
     unlock: NOT_SETUP,
-    create: NOT_SETUP,
+    save: NOT_SETUP,
   },
 });
 
@@ -39,19 +40,18 @@ export default function AuthProvider(props: PropsWithChildren) {
     }
   };
 
-  const create = (password: string) => {
-    const privkey = generatePrivateKey();
-    const pubkey = getPublicKey(privkey);
-    store.save(password, pubkey, privkey);
-    setCreds({ pubkey, privkey });
+  const save = (password: string, relay: string, creds: Credentials) => {
+    store.save(password, relay, creds.pubkey, creds.privkey);
+    setCreds(creds);
   };
 
   return (
     <Context.Provider
       value={{
+        accountExists: store.accountExists(),
         creds,
         isAuthenticated: Boolean(creds),
-        api: { unlock, create },
+        api: { unlock, save },
       }}
     >
       {props.children}

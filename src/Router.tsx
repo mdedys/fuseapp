@@ -1,18 +1,21 @@
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from "react-router-dom";
 
 import { useAuth } from "~/contexts/Auth.js";
-import ExistingUserView from "~/views/auth/ExistingUserView.js";
 import NewUserView from "~/views/auth/NewUserView.js";
 import HomeView from "~/views/home/HomeView.js";
+import GenerateKeys from "~/views/auth/GenerateKeys.js";
+import UnlockAccount from "~/views/auth/UnlockAccount.js";
 
-const Paths = {
+export const Paths = {
   SignUp: "/signup",
-  SignIn: "/signin",
+  NewKeys: "/keys",
+  Unlock: "/unlock",
   Home: "/",
 };
 
 const Gate = () => {
-  const { isAuthenticated } = useAuth();
+  const { accountExists, isAuthenticated } = useAuth();
+  if (!isAuthenticated && accountExists) return <Navigate to={Paths.Unlock} replace />;
   if (!isAuthenticated) return <Navigate to={Paths.SignUp} replace />;
   return <Outlet />;
 };
@@ -23,8 +26,12 @@ const router = createBrowserRouter([
     element: <NewUserView />,
   },
   {
-    path: Paths.SignIn,
-    element: <ExistingUserView />,
+    path: Paths.NewKeys,
+    element: <GenerateKeys />,
+  },
+  {
+    path: Paths.Unlock,
+    element: <UnlockAccount />,
   },
   {
     element: <Gate />,

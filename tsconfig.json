@@ -20,6 +20,7 @@
       "~/contexts/*": ["./src/contexts/*"],
       "~/esm/*": ["./src/esm/*"],
       "~/hooks/*": ["./src/hooks/*"],
+      "~/stores/*": ["./src/stores/*"],
       "~/views/*": ["./src/views/*"]
     }
   },
