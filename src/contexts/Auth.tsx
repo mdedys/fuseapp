@@ -8,7 +8,7 @@ type AuthContext = {
   isAuthenticated: boolean;
   api: {
     unlock(password: string): void;
-    save(password: string, relay: string, redentials: Credentials): void;
+    save(password: string, redentials: Credentials): void;
   };
 };
 
@@ -40,8 +40,8 @@ export default function AuthProvider(props: PropsWithChildren) {
     }
   };
 
-  const save = (password: string, relay: string, creds: Credentials) => {
-    store.save(password, relay, creds.pubkey, creds.privkey);
+  const save = (password: string, creds: Credentials) => {
+    store.save(password, creds.pubkey, creds.privkey);
     setCreds(creds);
   };
 
