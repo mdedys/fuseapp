@@ -1,6 +1,6 @@
 import { useState, useContext, createContext, PropsWithChildren } from "react";
 
-import CredentialStore, { Credentials } from "~/stores/credentials/CredentialStore.js";
+import CredentialStore, { Credentials } from "~/credentials/CredentialStore.js";
 
 type AuthContext = {
   accountExists: boolean;

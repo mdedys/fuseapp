@@ -5,6 +5,7 @@ import NewUserView from "~/views/auth/NewUserView.js";
 import HomeView from "~/views/home/HomeView.js";
 import GenerateKeys from "~/views/auth/GenerateKeys.js";
 import UnlockAccount from "~/views/auth/UnlockAccount.js";
+import NostrProvider from "./nostr/NostrProvider.js";
 
 export const Paths = {
   SignUp: "/signup",
@@ -17,7 +18,11 @@ const Gate = () => {
   const { accountExists, isAuthenticated } = useAuth();
   if (!isAuthenticated && accountExists) return <Navigate to={Paths.Unlock} replace />;
   if (!isAuthenticated) return <Navigate to={Paths.SignUp} replace />;
-  return <Outlet />;
+  return (
+    <NostrProvider>
+      <Outlet />
+    </NostrProvider>
+  );
 };
 
 const router = createBrowserRouter([

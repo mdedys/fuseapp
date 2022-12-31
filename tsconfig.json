@@ -18,9 +18,9 @@
     "paths": {
       "~/components/*": ["./src/components/*"],
       "~/contexts/*": ["./src/contexts/*"],
+      "~/credentials/*": ["./src/credentials/*"],
       "~/esm/*": ["./src/esm/*"],
       "~/hooks/*": ["./src/hooks/*"],
-      "~/stores/*": ["./src/stores/*"],
       "~/views/*": ["./src/views/*"]
     }
   },
