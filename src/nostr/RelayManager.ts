@@ -18,7 +18,11 @@ class RelayManager {
 
   subscribe(filter: Filter): Observable<Event> {
     const stream = merge(...this.relays.map(r => r.subscribe(filter)));
-    return stream.pipe(distinct(e => e.id));
+    return stream.pipe(
+      distinct(e => {
+        return e.id;
+      }),
+    );
   }
 
   publish(event: Event) {

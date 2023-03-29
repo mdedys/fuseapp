@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { Event, Kind } from "nostr-tools";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const FAB = styled.div`
@@ -36,6 +37,14 @@ import { useNostr } from "../nostr/NostrProvider";
 export default function Debugger() {
   const nostr = useNostr();
   const [open, setOpen] = useState(false);
+  const [events, setEvents] = useState<Event[]>([]);
+
+  useEffect(() => {
+    console.log("SETTING UP SUBSCRIPTION");
+    nostr.subscribe({ kinds: [Kind.Text] }).subscribe(evt => {
+      setEvents(prev => [...prev, evt]);
+    });
+  }, [nostr]);
 
   return (
     <>
